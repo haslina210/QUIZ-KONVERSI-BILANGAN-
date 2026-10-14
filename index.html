@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261014-00-6bd5fd7","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/05db820ba1544614.telemetry_sdk.js" integrity="sha512-a7JzkQDDcioSXpM61nxTfeRW7PcxWQy5+BrhyeTFmQFsXJ+Gncm0y50u7fTA7qOPegFnRgqCfa0mGUOK1yjDWQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number System Quest — TKJ Edition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--panel:#101d2a;--line:#29465a;--green:#9dff52;--cyan:#58e5ef;--muted:#a7bac8;--white:#f4fbff;--red:#ff7887;--amber:#ffb531}
+    *{box-sizing:border-box}
+    body{margin:0;width:100%;font-family:"Space Mono",monospace;color:var(--white)}
+    button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
+    :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+    [hidden]{display:none!important}
+    .shell{width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));padding:22px;background-image:radial-gradient(ellipse at 85% 8%,rgba(88,229,239,.12),transparent 44%),linear-gradient(rgba(88,229,239,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(88,229,239,.035) 1px,transparent 1px);background-size:auto,36px 36px,36px 36px}
+    .frame{max-width:1100px;margin:auto}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0 20px;border-bottom:1px solid var(--line)}
+    .brand{color:var(--green);font-weight:700;letter-spacing:.1em}.brand-mark{display:inline-grid;place-items:center;width:36px;height:36px;border:1px solid var(--green);margin-right:10px}
+    .eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:.13em}
+    h1,h2{font-family:"Work Sans",sans-serif;letter-spacing:-.045em}
+    h1{font-size:clamp(42px,6vw,76px);line-height:1.04;margin:15px 0 22px;font-weight:800}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:68px 0}
+    .intro{color:var(--muted);line-height:1.8;max-width:550px}
+    .rules{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}
+    .rule{border:1px solid var(--line);border-radius:6px;padding:9px 11px;color:var(--muted);font-size:11px}
+    .panel,.terminal{background:var(--panel);border:1px solid var(--line);border-radius:17px;box-shadow:0 22px 65px #0004}
+    .terminal{overflow:hidden}.terminal-bar{padding:15px 22px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted)}
+    .dots{color:var(--red);letter-spacing:5px;margin-right:12px}.form-body{padding:26px}
+    .label{display:block;margin:0 0 10px;color:var(--cyan);font-size:12px;font-weight:700;text-transform:uppercase}
+    .input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:9px;background:#091522;color:var(--white)}
+    .primary,.secondary{border-radius:9px;padding:13px 16px;font-weight:700;transition:transform .2s,filter .2s}
+    .primary:hover:not(:disabled),.secondary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.12)}
+    .primary{background:var(--green);color:#07130d;border:1px solid var(--green)}
+    .secondary{background:#142638;color:var(--white);border:1px solid var(--line)}
+    .wide{width:100%}.error{color:var(--red);font-size:12px;margin:9px 0}
+    .game{padding:34px 0 50px}.game-head{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:16px;margin-bottom:18px}
+    .game-head h2{margin:7px 0 0;font-size:clamp(26px,4vw,39px)}
+    .stats{display:flex;gap:9px;flex-wrap:wrap}.stat{min-width:84px;padding:9px 12px;background:var(--panel);border:1px solid var(--line);border-radius:9px}
+    .stat small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase}.stat strong{display:block;color:var(--green);font-size:18px;margin-top:4px}
+    .game-layout{display:grid;grid-template-columns:minmax(0,1fr) 275px;gap:15px}
+    .board{padding:18px;min-width:0}.board-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:15px;font-size:12px}
+    #progress{color:var(--cyan)}#lives{color:var(--red)}
+    .question{padding:20px;background:#0b1928;border:1px solid var(--line);border-radius:10px;margin-bottom:18px}
+    .question small{display:block;color:var(--cyan);font-size:11px;letter-spacing:.1em}
+    .question strong{display:block;color:var(--green);font-family:"Work Sans",sans-serif;font-size:clamp(35px,5vw,58px);line-height:1.2;overflow-wrap:anywhere;margin:6px 0}
+    .question .route{color:var(--muted);font-size:13px}
+    .weights,.bits{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
+    .weights{gap:0;background:#08aeca;border-radius:7px 7px 0 0;overflow:hidden}
+    .weights span{text-align:center;padding:12px 0;border-right:1px solid #ffffff55;font-size:clamp(9px,1.4vw,12px);font-weight:700}
+    .bit-area{background:#064565;border:1px solid #23617c;border-top:0;border-radius:0 0 8px 8px;padding:28px 7px;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end}
+    .bit{height:46px;min-width:0;background:var(--amber);color:#102337;border:2px solid #d88b08;border-radius:5px;font-weight:700;font-size:17px}
+    .bit.on{background:var(--green);border-color:#6fc534}.bit:hover:not(:disabled){filter:brightness(1.15)}
+    .sum{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--muted);font-size:12px}.sum strong{color:var(--cyan);font-size:24px}
+    .answer-area{padding:24px;background:#0b1928;border:1px solid var(--line);border-radius:10px}
+    .answer-area .input{margin-top:8px;font-size:22px;text-transform:uppercase}
+    .help{color:var(--muted);font-size:11px;line-height:1.7;margin:10px 0 0}
+    .sidebar{padding:19px;display:flex;flex-direction:column;gap:16px}
+    .side-title{color:var(--cyan);font-size:11px;letter-spacing:.12em}
+    .track{height:9px;background:#283746;border-radius:20px;overflow:hidden;margin-top:10px}
+    .fill{height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),var(--green))}
+    .feedback{padding:12px;border:1px solid var(--line);border-radius:9px;background:#0b1928;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+    .feedback.good{border-color:var(--green)}.feedback.bad{border-color:var(--red)}
+    .controls{display:grid;gap:9px;margin-top:auto}
+    .result{max-width:700px;margin:65px auto;text-align:center}.result h2{font-size:clamp(36px,6vw,60px);margin:12px 0}
+    .result-sub{color:var(--muted);line-height:1.7}
+    .result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0}
+    .result-stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 9px}
+    .result-stat strong{display:block;color:var(--green);font-size:26px}.result-stat span{color:var(--muted);font-size:11px}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    footer{border-top:1px solid var(--line);padding:19px 0;color:var(--muted);font-size:11px}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;gap:22px;padding:42px 0}.game-layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.controls{grid-column:1/-1;grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.shell{padding:14px}.sidebar{display:flex}.controls{grid-template-columns:1fr 1fr}.board{padding:10px}.bit{height:39px}.result-stats{gap:5px}.actions{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="/_sdk/570d53629f0b998d.data_sdk.js" type="text/javascript" integrity="sha512-JEN39+V+Nvv9ZZOVS8vNk1iA9ErZJHTdgOw9KzPuMiK7m0I+KPEr/wmTnCFIQVsDjCZgJWfGnFi1IQh2Io2qyA=="></script>
+  <script src="/_sdk/0b63fb8940df03d4.editing_sdk.js" type="text/javascript" integrity="sha512-fFkkekAA7XKU9UcNO+7a7lGi1SDVYUdIo1lpZS9YpfVovu1WAj3C/MEr/w8zt6Jwq6OKflaYkwf4eOUpMYGz9A=="></script>
+  <script src="/_sdk/f195026a424c1f85.resizing_sdk.js" type="text/javascript" integrity="sha512-8On4Z+AXh1abEzZJ9Dbn9wOvFg+k1LsAaAzKGQ7LlfgXajZ9xEmZaZ1QVzv0AWhCZtCsEpWSOG9DgLri06TS7A=="></script>
+ </head>
+ <body data-template-id="__page-root">
+  <div class="shell">
+   <div class="frame">
+    <header class="topbar">
+     <div class="brand">
+      <span class="brand-mark" aria-hidden="true">&gt;_</span><span data-template-id="brand-name" class="canva-text">TKJ // QUEST</span>
+     </div><button id="sound" type="button" class="secondary" aria-pressed="true"><span data-template-id="sound-on" class="canva-text" id="sound-on">♫ Suara: ON</span><span data-template-id="sound-off" class="canva-text" id="sound-off" hidden>♫ Suara: OFF</span></button>
+    </header>
+    <main>
+     <section id="start" class="hero" aria-labelledby="title">
+      <div>
+       <p data-template-id="eyebrow" class="canva-text eyebrow">/ SYSTEMS TRAINING_02</p>
+       <h1 id="title" data-template-id="title" class="canva-text">Number System Quest</h1>
+       <p data-template-id="intro" class="canva-text intro">Satu level, banyak jalur konversi. Soal mengacak basis asal dan tujuan. Susun bit untuk hasil biner; ketik jawaban untuk hasil lainnya.</p>
+       <div class="rules">
+        <span data-template-id="rule-one" class="canva-tag rule">⌁ 10 konversi / sesi</span><span data-template-id="rule-two" class="canva-tag rule">◷ 40 detik / soal</span><span data-template-id="rule-three" class="canva-tag rule">♥ 3 nyawa</span>
+       </div>
+      </div>
+      <form id="start-form" class="terminal" novalidate>
+       <div class="terminal-bar">
+        <span class="dots" aria-hidden="true">● ● ●</span><span data-template-id="setup-caption" class="canva-text">PLAYER_SETUP.EXE</span>
+       </div>
+       <div class="form-body"><label for="name" data-template-id="name-label" class="canva-text label">Nama pemain</label> <input id="name" data-template-id="name-input" class="canva-input input" type="text" maxlength="60" autocomplete="name" required placeholder="Masukkan namamu">
+        <p data-template-id="setup-help" class="canva-text help">Semua basis dimainkan dalam satu level. Setiap soal memberi tahu basis tujuan jawabanmu.</p>
+        <p id="form-error" data-template-id="form-error" class="canva-text error" role="alert" hidden>Masukkan nama terlebih dahulu.</p><button type="submit" data-template-id="start-button" class="canva-button primary wide" style="margin-top:22px">MULAI MISI →</button>
+       </div>
+      </form>
+     </section>
+     <section id="game" class="game" aria-labelledby="game-heading" hidden>
+      <div class="game-head">
+       <div>
+        <p id="player" class="eyebrow"></p>
+        <h2 id="game-heading" data-template-id="game-heading" class="canva-text">Konversikan bilangan.</h2>
+       </div>
+       <div class="stats">
+        <div class="stat">
+         <small data-template-id="score-label" class="canva-text">Skor</small><strong id="score">0</strong>
+        </div>
+        <div class="stat">
+         <small data-template-id="combo-label" class="canva-text">Combo</small><strong id="combo">×0</strong>
+        </div>
+        <div class="stat">
+         <small data-template-id="time-label" class="canva-text">Waktu</small><strong id="time">40</strong>
+        </div>
+       </div>
+      </div>
+      <div class="game-layout">
+       <div data-template-id="board-panel" class="canva-panel panel board">
+        <div class="board-top">
+         <span id="progress"></span><strong id="lives" aria-live="polite"></strong>
+        </div>
+        <div class="question"><small data-template-id="question-label" class="canva-text">SOAL // UBAH BILANGAN INI</small> <strong id="target"></strong>
+         <div id="route" class="route"></div>
+        </div>
+        <div id="binary-mode">
+         <p data-template-id="binary-label" class="canva-text label">Jawab dengan menyusun 8 bit</p>
+         <div class="weights" aria-label="Bobot kolom">
+          <span>128</span><span>64</span><span>32</span><span>16</span><span>8</span><span>4</span><span>2</span><span>1</span>
+         </div>
+         <div class="bit-area">
+          <div id="bits" class="bits"></div>
+         </div>
+         <div class="sum">
+          <span data-template-id="sum-label" class="canva-text">NILAI SUSUNAN =</span><strong id="sum">0</strong>
+         </div>
+         <p data-template-id="binary-help" class="canva-text help">Klik bit, atau tekan tombol 1–8 pada keyboard. Bit yang menyala bernilai 1.</p>
+        </div>
+        <div id="text-mode" class="answer-area" hidden><label for="answer" id="answer-label" class="label">Jawaban</label> <input id="answer" data-template-id="answer-input" class="canva-input input" type="text" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ketik jawaban di sini">
+         <p id="answer-help" class="help"></p>
+        </div>
+       </div>
+       <aside data-template-id="side-panel" class="canva-panel panel sidebar" aria-label="Waktu dan kontrol">
+        <div>
+         <div data-template-id="side-title" class="canva-text side-title">
+          MISSION CONTROL
+         </div>
+         <p id="mission-note" class="help"></p>
+        </div>
+        <div>
+         <div class="help">
+          <span data-template-id="remaining-label" class="canva-text">Sisa waktu</span> · <span id="remaining">40</span>s
+         </div>
+         <div id="time-track" class="track" role="progressbar" aria-label="Sisa waktu" aria-valuemin="0" aria-valuemax="40" aria-valuenow="40">
+          <div id="fill" class="fill"></div>
+         </div>
+        </div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+        <div class="controls"><button id="check" type="button" data-template-id="check-button" class="canva-button primary">PERIKSA JAWABAN →</button> <button id="next" type="button" data-template-id="next-button" class="canva-button primary" hidden>LANJUT →</button> <button id="pause" type="button" class="secondary"><span id="pause-label" data-template-id="pause-label" class="canva-text">Ⅱ JEDA</span><span id="resume-label" data-template-id="resume-label" class="canva-text" hidden>▶ LANJUTKAN</span></button> <button id="end" type="button" data-template-id="end-button" class="canva-button secondary">AKHIRI GAME</button>
+        </div>
+       </aside>
+      </div>
+     </section>
+     <section id="result" class="result" aria-labelledby="result-heading" hidden>
+      <p data-template-id="result-eyebrow" class="canva-text eyebrow">/ MISSION_REPORT</p>
+      <h2 id="result-heading"></h2>
+      <p id="result-sub" class="result-sub"></p>
+      <div class="result-stats">
+       <div class="result-stat">
+        <strong id="final-score"></strong><span data-template-id="final-score-label" class="canva-text">TOTAL SKOR</span>
+       </div>
+       <div class="result-stat">
+        <strong id="accuracy"></strong><span data-template-id="accuracy-label" class="canva-text">AKURASI</span>
+       </div>
+       <div class="result-stat">
+        <strong id="correct"></strong><span data-template-id="correct-label" class="canva-text">BENAR / DIJAWAB</span>
+       </div>
+      </div>
+      <div class="actions">
+       <button id="replay" type="button" data-template-id="replay-button" class="canva-button primary">↻ MAIN LAGI</button>
+      </div>
+     </section>
+    </main>
+    <footer>
+     <span data-template-id="footer-text" class="canva-text">NUMBER SYSTEM QUEST // KELAS X TKJ · BELAJAR, COBA, ULANGI.</span>
+    </footer>
+   </div>
+  </div>
+  <script>
+  (() => {
+    const $ = id => document.getElementById(id);
+    const weights = [128,64,32,16,8,4,2,1];
+    const bases = {binary:2,octal:8,decimal:10,hex:16};
+    const names = {binary:"Biner",octal:"Oktal",decimal:"Desimal",hex:"Heksadesimal"};
+    const formats = {binary:"0 dan 1",octal:"0–7",decimal:"0–9",hex:"0–9 dan A–F"};
+    const questionCount = 10;
+    const state = {name:"",questions:[],index:0,bits:Array(8).fill(0),score:0,combo:0,lives:3,correct:0,attempted:0,remaining:40,deadline:0,timer:null,locked:false,paused:false,sound:true,audio:null};
+
+    function show(id){["start","game","result"].forEach(view => $(view).hidden = view !== id)}
+    function format(value,base){return value.toString(bases[base]).toUpperCase()}
+    function stopTimer(){clearInterval(state.timer);state.timer=null}
+    function total(){return state.bits.reduce((sum,bit,i)=>sum+bit*weights[i],0)}
+    function renderBits(){
+      [...$("bits").children].forEach((button,i)=>{
+        button.textContent=state.bits[i];
+        button.classList.toggle("on",state.bits[i]===1);
+        button.setAttribute("aria-label",`Bobot ${weights[i]}, bit ${state.bits[i]}`);
+        button.setAttribute("aria-pressed",String(state.bits[i]===1));
+        button.disabled=state.locked||state.paused;
+      });
+      $("sum").textContent=total();
+    }
+    function toggleBit(i){if(state.locked||state.paused||$("game").hidden)return;state.bits[i]^=1;renderBits()}
+    weights.forEach((weight,i)=>{
+      const button=document.createElement("button");
+      button.type="button";button.className="bit";
+      button.addEventListener("click",()=>toggleBit(i));
+      $("bits").append(button);
+    });
+    function tone(good){
+      if(!state.sound)return;
+      try{
+        const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+        if(!AudioContextClass)return;
+        state.audio ||= new AudioContextClass();
+        if(state.audio.state==="suspended")state.audio.resume();
+        const ctx=state.audio,now=ctx.currentTime;
+        [0,1].forEach(step=>{
+          const osc=ctx.createOscillator(),gain=ctx.createGain();
+          osc.type=good?"sine":"triangle";
+          osc.frequency.value=good?620+step*210:340-step*95;
+          gain.gain.setValueAtTime(.0001,now+step*.11);
+          gain.gain.exponentialRampToValueAtTime(.07,now+step*.11+.014);
+          gain.gain.exponentialRampToValueAtTime(.0001,now+step*.11+.17);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(now+step*.11);osc.stop(now+step*.11+.18);
+        });
+      }catch(_){}
+    }
+    function updateClock(){
+      if(state.locked||state.paused)return;
+      state.remaining=Math.max(0,(state.deadline-performance.now())/1000);
+      const seconds=Math.ceil(state.remaining);
+      $("time").textContent=seconds;$("remaining").textContent=seconds;
+      $("fill").style.width=state.remaining/40*100+"%";
+      $("time-track").setAttribute("aria-valuenow",String(seconds));
+      if(state.remaining<=0)resolve(true);
+    }
+    function startClock(){state.deadline=performance.now()+state.remaining*1000;updateClock();state.timer=setInterval(updateClock,100)}
+    function renderQuestion(){
+      stopTimer();state.locked=false;state.paused=false;state.bits.fill(0);state.remaining=40;
+      const q=state.questions[state.index],binary=q.to==="binary";
+      $("progress").textContent=`SOAL ${String(state.index+1).padStart(2,"0")} / ${questionCount}`;
+      $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
+      $("target").textContent=format(q.value,q.from);
+      $("route").textContent=`${names[q.from]} (basis ${bases[q.from]}) → ${names[q.to]} (basis ${bases[q.to]})`;
+      $("mission-note").textContent=`Ubah ${names[q.from].toLowerCase()} ke ${names[q.to].toLowerCase()}.`;
+      $("binary-mode").hidden=!binary;$("text-mode").hidden=binary;
+      $("answer-label").textContent=`Jawaban ${names[q.to]} · basis ${bases[q.to]}`;
+      $("answer-help").textContent=`Gunakan karakter ${formats[q.to]}. Tekan Enter untuk memeriksa.`;
+      $("answer").value="";$("answer").disabled=false;
+      $("feedback").hidden=true;$("feedback").className="feedback";
+      $("check").hidden=false;$("check").disabled=false;$("next").hidden=true;
+      $("pause").disabled=false;$("pause-label").hidden=false;$("resume-label").hidden=true;
+      renderBits();startClock();
+      if(!binary)$("answer").focus();else $("bits").firstElementChild.focus();
+    }
+    function parseAnswer(raw,base){
+      const patterns={decimal:/^[0-9]+$/,octal:/^[0-7]+$/,hex:/^[0-9A-Fa-f]+$/};
+      const trimmed=raw.trim();
+      if(!patterns[base].test(trimmed))return null;
+      const value=parseInt(trimmed,bases[base]);
+      return Number.isSafeInteger(value)?value:null;
+    }
+    function resolve(timedOut=false){
+      if(state.locked||state.paused)return;
+      const q=state.questions[state.index],binary=q.to==="binary";
+      const typed=$("answer").value.trim();
+      const answer=binary?total():parseAnswer(typed,q.to);
+      if(!timedOut&&!binary&&answer===null){
+        $("feedback").hidden=false;$("feedback").className="feedback bad";
+        $("feedback").textContent=`Masukkan jawaban ${names[q.to]} yang valid (${formats[q.to]}).`;
+        $("answer").focus();return;
+      }
+      state.locked=true;stopTimer();state.attempted++;
+      const good=!timedOut&&answer===q.value;
+      if(good){state.correct++;state.combo++;state.score+=100+Math.ceil(state.remaining)*2+Math.min(state.combo-1,5)*25}
+      else{state.lives--;state.combo=0}
+      $("score").textContent=state.score;$("combo").textContent="×"+state.combo;
+      $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
+      renderBits();$("answer").disabled=true;tone(good);
+      $("feedback").hidden=false;$("feedback").className="feedback "+(good?"good":"bad");
+      const solution=`${format(q.value,q.from)} (${names[q.from]}) = ${format(q.value,q.to)} (${names[q.to]})`;
+      const working=q.to==="binary"
+        ?`Bobot bit dari kiri: 128, 64, 32, 16, 8, 4, 2, 1. Bit bernilai 1: ${weights.filter(weight=>q.value&weight).join(" + ")||"0"}.`
+        :`Bagi ${q.value} berulang dengan ${bases[q.to]}, lalu baca sisa pembagian dari bawah ke atas untuk memperoleh ${format(q.value,q.to)}.`;
+      $("feedback").textContent=good
+        ?`✓ Tepat! ${solution}. Combo ×${state.combo}.`
+        :`${timedOut?"⌛ Waktu habis.":"✕ Belum tepat."} ${solution}. ${working} Jawabanmu: ${timedOut?"belum dijawab":binary?state.bits.join(""):typed}.`;
+      $("check").hidden=true;$("next").hidden=false;$("pause").disabled=true;
+      $("next").focus();
+    }
+    function finish(ended=false){
+      stopTimer();
+      const won=!ended&&state.index===questionCount-1&&state.lives>0;
+      $("result-heading").textContent=won?"MISI SELESAI!":"MISI DIAKHIRI";
+      $("result-sub").textContent=`${state.name} · Level campuran · ${won?"Kamu menuntaskan seluruh konversi!":state.lives===0?"Nyawamu habis. Coba lagi!":"Sesi dihentikan sebelum semua soal selesai."}`;
+      $("final-score").textContent=state.score;
+      $("accuracy").textContent=(state.attempted?Math.round(state.correct/state.attempted*100):0)+"%";
+      $("correct").textContent=`${state.correct} / ${state.attempted}`;
+      show("result");
+    }
+    function shuffle(items){
+      for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}
+      return items;
+    }
+    $("start-form").addEventListener("submit",e=>{
+      e.preventDefault();
+      const name=$("name").value.trim();
+      if(!name){$("form-error").hidden=false;$("name").focus();return}
+      $("form-error").hidden=true;state.name=name;
+      const types=Object.keys(bases);
+      const pairs=shuffle(types.flatMap(from=>types.filter(to=>to!==from).map(to=>({from,to}))));
+      state.questions=pairs.slice(0,questionCount).map(pair=>({...pair,value:Math.floor(Math.random()*256)}));
+      state.index=0;state.score=0;state.combo=0;state.lives=3;state.correct=0;state.attempted=0;
+      $("score").textContent="0";$("combo").textContent="×0";
+      $("player").textContent=`${name} // LEVEL CAMPURAN`;
+      show("game");renderQuestion();
+    });
+    $("name").addEventListener("input",()=>{$("form-error").hidden=true});
+    $("check").addEventListener("click",()=>resolve());
+    $("next").addEventListener("click",()=>{
+      if(state.lives===0||state.index===questionCount-1)finish();
+      else{state.index++;renderQuestion()}
+    });
+    $("pause").addEventListener("click",()=>{
+      if(state.locked)return;
+      state.paused=!state.paused;
+      $("pause-label").hidden=state.paused;$("resume-label").hidden=!state.paused;
+      $("check").disabled=state.paused;$("answer").disabled=state.paused;
+      if(state.paused)stopTimer();else startClock();
+      renderBits();
+    });
+    $("end").addEventListener("click",()=>finish(true));
+    $("sound").addEventListener("click",()=>{
+      state.sound=!state.sound;$("sound-on").hidden=!state.sound;$("sound-off").hidden=state.sound;
+      $("sound").setAttribute("aria-pressed",String(state.sound));
+    });
+    $("replay").addEventListener("click",()=>{stopTimer();show("start");$("name").focus()});
+    document.addEventListener("keydown",e=>{
+      if($("game").hidden||state.paused||state.locked||e.altKey||e.ctrlKey||e.metaKey)return;
+      const binary=state.questions[state.index].to==="binary";
+      if(binary&&e.target.tagName!=="BUTTON"&&/^[1-8]$/.test(e.key)){e.preventDefault();toggleBit(Number(e.key)-1)}
+      if(e.key==="Enter"&&(e.target===$("answer")||e.target.tagName!=="BUTTON")){e.preventDefault();resolve()}
+    });
+  })();
+  </script>
+ </body>
+</html>
