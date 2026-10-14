@@ -6,9 +6,9 @@
   <title>Number System Quest — TKJ Edition</title>
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <style>
-    :root{--panel:#101d2a;--line:#29465a;--green:#9dff52;--cyan:#58e5ef;--muted:#a7bac8;--white:#f4fbff;--red:#ff7887;--amber:#ffb531}
+    :root{--bg:#080e17;--panel:#101d2a;--line:#29465a;--green:#9dff52;--cyan:#58e5ef;--muted:#a7bac8;--white:#f4fbff;--red:#ff7887;--amber:#ffb531}
     *{box-sizing:border-box}
-    body{margin:0;width:100%;font-family:"Space Mono",monospace;color:var(--white)}
+    body{margin:0;width:100%;min-height:100%;font-family:"Space Mono",monospace;color:var(--white)}
     button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
     :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
     [hidden]{display:none!important}
@@ -84,16 +84,15 @@
     <header class="topbar">
      <div class="brand">
       <span class="brand-mark" aria-hidden="true">&gt;_</span><span data-template-id="brand-name" class="canva-text">TKJ // QUEST</span>
-     </div><button id="sound" type="button" class="secondary" aria-pressed="true"><span data-template-id="sound-on" class="canva-text" id="sound-on">♫ Suara: ON</span><span data-template-id="sound-off" class="canva-text" id="sound-off" hidden>♫ Suara: OFF</span></button>
+     </div><button id="sound" type="button" class="secondary canva-button" aria-pressed="true"> <span data-template-id="sound-on" class="canva-text" id="sound-on">♫ Suara: ON</span> <span data-template-id="sound-off" class="canva-text" id="sound-off" hidden>♫ Suara: OFF</span> </button>
     </header>
     <main>
      <section id="start" class="hero" aria-labelledby="title">
       <div>
        <p data-template-id="eyebrow" class="canva-text eyebrow">/ SYSTEMS TRAINING_02</p>
        <h1 id="title" data-template-id="title" class="canva-text">Number System Quest</h1>
-       <p data-template-id="intro" class="canva-text intro">Satu level, banyak jalur konversi. Soal mengacak basis asal dan tujuan. Susun bit untuk hasil biner; ketik jawaban untuk hasil lainnya.</p>
-       <div class="rules">
-        <span data-template-id="rule-one" class="canva-tag rule">⌁ 10 konversi / sesi</span><span data-template-id="rule-two" class="canva-tag rule">◷ 40 detik / soal</span><span data-template-id="rule-three" class="canva-tag rule">♥ 3 nyawa</span>
+       <p data-template-id="intro" class="canva-text intro">Satu level, banyak jalur konversi. Soal mengacak basis asal dan tujuan: heksadesimal tidak selalu menuju biner. Susun bit untuk hasil biner; ketik jawaban untuk hasil lainnya.</p>
+       <div class="rules"><span data-template-id="rule-one" class="canva-tag rule">⌁ 10 konversi / sesi</span> <span data-template-id="rule-two" class="canva-tag rule">◷ 40 detik / soal</span> <span data-template-id="rule-three" class="canva-tag rule">♥ 3 nyawa</span>
        </div>
       </div>
       <form id="start-form" class="terminal" novalidate>
@@ -165,7 +164,7 @@
          </div>
         </div>
         <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
-        <div class="controls"><button id="check" type="button" data-template-id="check-button" class="canva-button primary">PERIKSA JAWABAN →</button> <button id="next" type="button" data-template-id="next-button" class="canva-button primary" hidden>LANJUT →</button> <button id="pause" type="button" class="secondary"><span id="pause-label" data-template-id="pause-label" class="canva-text">Ⅱ JEDA</span><span id="resume-label" data-template-id="resume-label" class="canva-text" hidden>▶ LANJUTKAN</span></button> <button id="end" type="button" data-template-id="end-button" class="canva-button secondary">AKHIRI GAME</button>
+        <div class="controls"><button id="check" type="button" data-template-id="check-button" class="canva-button primary">PERIKSA JAWABAN →</button> <button id="next" type="button" data-template-id="next-button" class="canva-button primary" hidden>LANJUT →</button> <button id="pause" type="button" class="secondary canva-button"><span id="pause-label" data-template-id="pause-label" class="canva-text">Ⅱ JEDA</span><span id="resume-label" data-template-id="resume-label" class="canva-text" hidden>▶ LANJUTKAN</span></button> <button id="end" type="button" data-template-id="end-button" class="canva-button secondary">AKHIRI GAME</button>
         </div>
        </aside>
       </div>
@@ -185,8 +184,7 @@
         <strong id="correct"></strong><span data-template-id="correct-label" class="canva-text">BENAR / DIJAWAB</span>
        </div>
       </div>
-      <div class="actions">
-       <button id="replay" type="button" data-template-id="replay-button" class="canva-button primary">↻ MAIN LAGI</button>
+      <div class="actions"><button id="replay" type="button" data-template-id="replay-button" class="canva-button primary">↻ MAIN LAGI</button>
       </div>
      </section>
     </main>
@@ -196,173 +194,170 @@
    </div>
   </div>
   <script>
-  (() => {
-    const $ = id => document.getElementById(id);
-    const weights = [128,64,32,16,8,4,2,1];
-    const bases = {binary:2,octal:8,decimal:10,hex:16};
-    const names = {binary:"Biner",octal:"Oktal",decimal:"Desimal",hex:"Heksadesimal"};
-    const formats = {binary:"0 dan 1",octal:"0–7",decimal:"0–9",hex:"0–9 dan A–F"};
-    const questionCount = 10;
-    const state = {name:"",questions:[],index:0,bits:Array(8).fill(0),score:0,combo:0,lives:3,correct:0,attempted:0,remaining:40,deadline:0,timer:null,locked:false,paused:false,sound:true,audio:null};
-
-    function show(id){["start","game","result"].forEach(view => $(view).hidden = view !== id)}
-    function format(value,base){return value.toString(bases[base]).toUpperCase()}
-    function stopTimer(){clearInterval(state.timer);state.timer=null}
-    function total(){return state.bits.reduce((sum,bit,i)=>sum+bit*weights[i],0)}
-    function renderBits(){
-      [...$("bits").children].forEach((button,i)=>{
-        button.textContent=state.bits[i];
-        button.classList.toggle("on",state.bits[i]===1);
-        button.setAttribute("aria-label",`Bobot ${weights[i]}, bit ${state.bits[i]}`);
-        button.setAttribute("aria-pressed",String(state.bits[i]===1));
-        button.disabled=state.locked||state.paused;
+(() => {
+  const $ = id => document.getElementById(id);
+  const weights = [128,64,32,16,8,4,2,1];
+  const bases = {binary:2,octal:8,decimal:10,hex:16};
+  const names = {binary:"Biner",octal:"Oktal",decimal:"Desimal",hex:"Heksadesimal"};
+  const formats = {binary:"0 dan 1",octal:"0–7",decimal:"0–9",hex:"0–9 dan A–F"};
+  const state = {name:"",questions:[],index:0,bits:Array(8).fill(0),score:0,combo:0,lives:3,correct:0,attempted:0,remaining:40,deadline:0,timer:null,locked:false,paused:false,sound:true,audio:null};
+  function show(id){["start","game","result"].forEach(view => $(view).hidden = view !== id)}
+  function format(value,base){return value.toString(bases[base]).toUpperCase()}
+  function stopTimer(){clearInterval(state.timer);state.timer=null}
+  function total(){return state.bits.reduce((sum,bit,i)=>sum+bit*weights[i],0)}
+  function renderBits(){
+    [...$("bits").children].forEach((button,i)=>{
+      button.textContent=state.bits[i];
+      button.classList.toggle("on",state.bits[i]===1);
+      button.setAttribute("aria-label",`Bobot ${weights[i]}, bit ${state.bits[i]}`);
+      button.setAttribute("aria-pressed",String(state.bits[i]===1));
+      button.disabled=state.locked||state.paused;
+    });
+    $("sum").textContent=total();
+  }
+  function toggleBit(i){if(state.locked||state.paused||$("game").hidden)return;state.bits[i]^=1;renderBits()}
+  weights.forEach((weight,i)=>{
+    const button=document.createElement("button");
+    button.type="button";button.className="bit";
+    button.addEventListener("click",()=>toggleBit(i));
+    $("bits").append(button);
+  });
+  function tone(good){
+    if(!state.sound)return;
+    try{
+      const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+      if(!AudioContextClass)return;
+      state.audio ||= new AudioContextClass();
+      if(state.audio.state==="suspended")state.audio.resume();
+      const ctx=state.audio,now=ctx.currentTime;
+      [0,1].forEach(step=>{
+        const osc=ctx.createOscillator(),gain=ctx.createGain();
+        osc.type=good?"sine":"triangle";
+        osc.frequency.value=good?620+step*210:340-step*95;
+        gain.gain.setValueAtTime(.0001,now+step*.11);
+        gain.gain.exponentialRampToValueAtTime(.07,now+step*.11+.014);
+        gain.gain.exponentialRampToValueAtTime(.0001,now+step*.11+.17);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(now+step*.11);osc.stop(now+step*.11+.18);
       });
-      $("sum").textContent=total();
+    }catch(_){}
+  }
+  function updateClock(){
+    if(state.locked||state.paused)return;
+    state.remaining=Math.max(0,(state.deadline-performance.now())/1000);
+    const seconds=Math.ceil(state.remaining);
+    $("time").textContent=seconds;$("remaining").textContent=seconds;
+    $("fill").style.width=state.remaining/40*100+"%";
+    $("time-track").setAttribute("aria-valuenow",String(seconds));
+    if(state.remaining<=0)resolve(true);
+  }
+  function startClock(){state.deadline=performance.now()+state.remaining*1000;updateClock();state.timer=setInterval(updateClock,100)}
+  function renderQuestion(){
+    stopTimer();state.locked=false;state.paused=false;state.bits.fill(0);state.remaining=40;
+    const q=state.questions[state.index],binary=q.to==="binary";
+    $("progress").textContent=`SOAL ${String(state.index+1).padStart(2,"0")} / 20`;
+    $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
+    $("target").textContent=format(q.value,q.from);
+    $("route").textContent=`${names[q.from]} (basis ${bases[q.from]}) → ${names[q.to]} (basis ${bases[q.to]})`;
+    $("mission-note").textContent=`Ubah ${names[q.from].toLowerCase()} ke ${names[q.to].toLowerCase()}.`;
+    $("binary-mode").hidden=!binary;$("text-mode").hidden=binary;
+    $("answer-label").textContent=`Jawaban ${names[q.to]} · basis ${bases[q.to]}`;
+    $("answer-help").textContent=`Gunakan karakter ${formats[q.to]}. Tekan Enter untuk memeriksa.`;
+    $("answer").value="";
+    $("feedback").hidden=true;$("feedback").className="feedback";
+    $("check").hidden=false;$("check").disabled=false;$("next").hidden=true;
+    $("pause").disabled=false;$("pause-label").hidden=false;$("resume-label").hidden=true;
+    renderBits();startClock();
+    if(!binary)$("answer").focus();else $("bits").firstElementChild.focus();
+  }
+  function parseAnswer(raw,base){
+    const patterns={decimal:/^[0-9]+$/,octal:/^[0-7]+$/,hex:/^[0-9A-Fa-f]+$/};
+    const trimmed=raw.trim();
+    if(!patterns[base].test(trimmed))return null;
+    const value=parseInt(trimmed,bases[base]);
+    return Number.isSafeInteger(value)?value:null;
+  }
+  function resolve(timedOut=false){
+    if(state.locked||state.paused)return;
+    const q=state.questions[state.index],binary=q.to==="binary";
+    const typed=$("answer").value.trim();
+    const answer=binary?total():parseAnswer(typed,q.to);
+    if(!timedOut&&!binary&&answer===null){
+      $("feedback").hidden=false;$("feedback").className="feedback bad";
+      $("feedback").textContent=`Masukkan jawaban ${names[q.to]} yang valid (${formats[q.to]}).`;
+      $("answer").focus();
+      return;
     }
-    function toggleBit(i){if(state.locked||state.paused||$("game").hidden)return;state.bits[i]^=1;renderBits()}
-    weights.forEach((weight,i)=>{
-      const button=document.createElement("button");
-      button.type="button";button.className="bit";
-      button.addEventListener("click",()=>toggleBit(i));
-      $("bits").append(button);
-    });
-    function tone(good){
-      if(!state.sound)return;
-      try{
-        const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-        if(!AudioContextClass)return;
-        state.audio ||= new AudioContextClass();
-        if(state.audio.state==="suspended")state.audio.resume();
-        const ctx=state.audio,now=ctx.currentTime;
-        [0,1].forEach(step=>{
-          const osc=ctx.createOscillator(),gain=ctx.createGain();
-          osc.type=good?"sine":"triangle";
-          osc.frequency.value=good?620+step*210:340-step*95;
-          gain.gain.setValueAtTime(.0001,now+step*.11);
-          gain.gain.exponentialRampToValueAtTime(.07,now+step*.11+.014);
-          gain.gain.exponentialRampToValueAtTime(.0001,now+step*.11+.17);
-          osc.connect(gain).connect(ctx.destination);
-          osc.start(now+step*.11);osc.stop(now+step*.11+.18);
-        });
-      }catch(_){}
-    }
-    function updateClock(){
-      if(state.locked||state.paused)return;
-      state.remaining=Math.max(0,(state.deadline-performance.now())/1000);
-      const seconds=Math.ceil(state.remaining);
-      $("time").textContent=seconds;$("remaining").textContent=seconds;
-      $("fill").style.width=state.remaining/40*100+"%";
-      $("time-track").setAttribute("aria-valuenow",String(seconds));
-      if(state.remaining<=0)resolve(true);
-    }
-    function startClock(){state.deadline=performance.now()+state.remaining*1000;updateClock();state.timer=setInterval(updateClock,100)}
-    function renderQuestion(){
-      stopTimer();state.locked=false;state.paused=false;state.bits.fill(0);state.remaining=40;
-      const q=state.questions[state.index],binary=q.to==="binary";
-      $("progress").textContent=`SOAL ${String(state.index+1).padStart(2,"0")} / ${questionCount}`;
-      $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
-      $("target").textContent=format(q.value,q.from);
-      $("route").textContent=`${names[q.from]} (basis ${bases[q.from]}) → ${names[q.to]} (basis ${bases[q.to]})`;
-      $("mission-note").textContent=`Ubah ${names[q.from].toLowerCase()} ke ${names[q.to].toLowerCase()}.`;
-      $("binary-mode").hidden=!binary;$("text-mode").hidden=binary;
-      $("answer-label").textContent=`Jawaban ${names[q.to]} · basis ${bases[q.to]}`;
-      $("answer-help").textContent=`Gunakan karakter ${formats[q.to]}. Tekan Enter untuk memeriksa.`;
-      $("answer").value="";$("answer").disabled=false;
-      $("feedback").hidden=true;$("feedback").className="feedback";
-      $("check").hidden=false;$("check").disabled=false;$("next").hidden=true;
-      $("pause").disabled=false;$("pause-label").hidden=false;$("resume-label").hidden=true;
-      renderBits();startClock();
-      if(!binary)$("answer").focus();else $("bits").firstElementChild.focus();
-    }
-    function parseAnswer(raw,base){
-      const patterns={decimal:/^[0-9]+$/,octal:/^[0-7]+$/,hex:/^[0-9A-Fa-f]+$/};
-      const trimmed=raw.trim();
-      if(!patterns[base].test(trimmed))return null;
-      const value=parseInt(trimmed,bases[base]);
-      return Number.isSafeInteger(value)?value:null;
-    }
-    function resolve(timedOut=false){
-      if(state.locked||state.paused)return;
-      const q=state.questions[state.index],binary=q.to==="binary";
-      const typed=$("answer").value.trim();
-      const answer=binary?total():parseAnswer(typed,q.to);
-      if(!timedOut&&!binary&&answer===null){
-        $("feedback").hidden=false;$("feedback").className="feedback bad";
-        $("feedback").textContent=`Masukkan jawaban ${names[q.to]} yang valid (${formats[q.to]}).`;
-        $("answer").focus();return;
-      }
-      state.locked=true;stopTimer();state.attempted++;
-      const good=!timedOut&&answer===q.value;
-      if(good){state.correct++;state.combo++;state.score+=100+Math.ceil(state.remaining)*2+Math.min(state.combo-1,5)*25}
-      else{state.lives--;state.combo=0}
-      $("score").textContent=state.score;$("combo").textContent="×"+state.combo;
-      $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
-      renderBits();$("answer").disabled=true;tone(good);
-      $("feedback").hidden=false;$("feedback").className="feedback "+(good?"good":"bad");
-      const solution=`${format(q.value,q.from)} (${names[q.from]}) = ${format(q.value,q.to)} (${names[q.to]})`;
-      const working=q.to==="binary"
-        ?`Bobot bit dari kiri: 128, 64, 32, 16, 8, 4, 2, 1. Bit bernilai 1: ${weights.filter(weight=>q.value&weight).join(" + ")||"0"}.`
-        :`Bagi ${q.value} berulang dengan ${bases[q.to]}, lalu baca sisa pembagian dari bawah ke atas untuk memperoleh ${format(q.value,q.to)}.`;
-      $("feedback").textContent=good
-        ?`✓ Tepat! ${solution}. Combo ×${state.combo}.`
-        :`${timedOut?"⌛ Waktu habis.":"✕ Belum tepat."} ${solution}. ${working} Jawabanmu: ${timedOut?"belum dijawab":binary?state.bits.join(""):typed}.`;
-      $("check").hidden=true;$("next").hidden=false;$("pause").disabled=true;
-      $("next").focus();
-    }
-    function finish(ended=false){
-      stopTimer();
-      const won=!ended&&state.index===questionCount-1&&state.lives>0;
-      $("result-heading").textContent=won?"MISI SELESAI!":"MISI DIAKHIRI";
-      $("result-sub").textContent=`${state.name} · Level campuran · ${won?"Kamu menuntaskan seluruh konversi!":state.lives===0?"Nyawamu habis. Coba lagi!":"Sesi dihentikan sebelum semua soal selesai."}`;
-      $("final-score").textContent=state.score;
-      $("accuracy").textContent=(state.attempted?Math.round(state.correct/state.attempted*100):0)+"%";
-      $("correct").textContent=`${state.correct} / ${state.attempted}`;
-      show("result");
-    }
-    function shuffle(items){
-      for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}
-      return items;
-    }
-    $("start-form").addEventListener("submit",e=>{
-      e.preventDefault();
-      const name=$("name").value.trim();
-      if(!name){$("form-error").hidden=false;$("name").focus();return}
-      $("form-error").hidden=true;state.name=name;
-      const types=Object.keys(bases);
-      const pairs=shuffle(types.flatMap(from=>types.filter(to=>to!==from).map(to=>({from,to}))));
-      state.questions=pairs.slice(0,questionCount).map(pair=>({...pair,value:Math.floor(Math.random()*256)}));
-      state.index=0;state.score=0;state.combo=0;state.lives=3;state.correct=0;state.attempted=0;
-      $("score").textContent="0";$("combo").textContent="×0";
-      $("player").textContent=`${name} // LEVEL CAMPURAN`;
-      show("game");renderQuestion();
-    });
-    $("name").addEventListener("input",()=>{$("form-error").hidden=true});
-    $("check").addEventListener("click",()=>resolve());
-    $("next").addEventListener("click",()=>{
-      if(state.lives===0||state.index===questionCount-1)finish();
-      else{state.index++;renderQuestion()}
-    });
-    $("pause").addEventListener("click",()=>{
-      if(state.locked)return;
-      state.paused=!state.paused;
-      $("pause-label").hidden=state.paused;$("resume-label").hidden=!state.paused;
-      $("check").disabled=state.paused;$("answer").disabled=state.paused;
-      if(state.paused)stopTimer();else startClock();
-      renderBits();
-    });
-    $("end").addEventListener("click",()=>finish(true));
-    $("sound").addEventListener("click",()=>{
-      state.sound=!state.sound;$("sound-on").hidden=!state.sound;$("sound-off").hidden=state.sound;
-      $("sound").setAttribute("aria-pressed",String(state.sound));
-    });
-    $("replay").addEventListener("click",()=>{stopTimer();show("start");$("name").focus()});
-    document.addEventListener("keydown",e=>{
-      if($("game").hidden||state.paused||state.locked||e.altKey||e.ctrlKey||e.metaKey)return;
-      const binary=state.questions[state.index].to==="binary";
-      if(binary&&e.target.tagName!=="BUTTON"&&/^[1-8]$/.test(e.key)){e.preventDefault();toggleBit(Number(e.key)-1)}
-      if(e.key==="Enter"&&(e.target===$("answer")||e.target.tagName!=="BUTTON")){e.preventDefault();resolve()}
-    });
-  })();
-  </script>
+    state.locked=true;stopTimer();state.attempted++;
+    const good=!timedOut&&answer===q.value;
+    if(good){state.correct++;state.combo++;state.score+=100+Math.ceil(state.remaining)*2+Math.min(state.combo-1,5)*25}
+    else{state.lives--;state.combo=0}
+    $("score").textContent=state.score;$("combo").textContent="×"+state.combo;
+    $("lives").textContent="♥ ".repeat(state.lives)+"♡ ".repeat(3-state.lives);
+    renderBits();$("answer").disabled=true;tone(good);
+    $("feedback").hidden=false;$("feedback").className="feedback "+(good?"good":"bad");
+    const solution=`${format(q.value,q.from)} (${names[q.from]}) = ${format(q.value,q.to)} (${names[q.to]})`;
+    const working = q.to==="binary"
+      ? `Cara hitung: ${weights.filter(weight=>q.value&weight).map(weight=>`${weight} (bit 1)`).join(" + ")||"0"} = ${q.value}; susun bobot 128, 64, 32, 16, 8, 4, 2, 1 dari kiri ke kanan.`
+      : `Cara hitung: bagi ${q.value} berulang dengan ${bases[q.to]}, catat sisa tiap pembagian, lalu baca sisa dari bawah ke atas untuk mendapatkan ${format(q.value,q.to)}.`;
+    $("feedback").textContent=good
+      ?`✓ Tepat! ${solution}. Combo ×${state.combo}.`
+      :`${timedOut?"⌛ Waktu habis.":"✕ Belum tepat."} ${solution}. ${working} Jawabanmu: ${timedOut?"belum dijawab":binary?state.bits.join(""):typed}.`;
+    $("check").hidden=true;$("next").hidden=false;$("pause").disabled=true;$("next").focus();
+  }
+  function finish(ended=false){
+    stopTimer();
+    const won=!ended&&state.index===19;
+    $("result-heading").textContent=won?"MISI SELESAI!":"MISI DIAKHIRI";
+    $("result-sub").textContent=`${state.name} · Level campuran · ${won?"Kamu menuntaskan seluruh konversi!":state.lives===0?"Nyawamu habis. Coba lagi!":"Sesi dihentikan sebelum semua soal selesai."}`;
+    $("final-score").textContent=state.score;
+    $("accuracy").textContent=(state.attempted?Math.round(state.correct/state.attempted*100):0)+"%";
+    $("correct").textContent=`${state.correct} / ${state.attempted}`;
+    show("result");
+  }
+  $("start-form").addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=$("name").value.trim();
+    if(!name){$("form-error").hidden=false;$("name").focus();return}
+    $("form-error").hidden=true;state.name=name;
+    const pairs=[
+      {from:"hex",to:"decimal"},{from:"octal",to:"decimal"},{from:"binary",to:"decimal"},
+      {from:"decimal",to:"binary"},{from:"decimal",to:"hex"},{from:"decimal",to:"octal"}
+    ];
+    for(let i=pairs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]]}
+    state.questions=Array.from({length:20},(_,index)=>{const pair=pairs[index%pairs.length];return {...pair,value:Math.floor(Math.random()*256)}});
+    state.index=0;state.score=0;state.combo=0;state.lives=3;state.correct=0;state.attempted=0;
+    $("score").textContent="0";$("combo").textContent="×0";$("answer").disabled=false;
+    $("player").textContent=`${name} // LEVEL CAMPURAN`;
+    show("game");renderQuestion();
+  });
+  $("name").addEventListener("input",()=>{$("form-error").hidden=true});
+  $("check").addEventListener("click",()=>resolve());
+  $("next").addEventListener("click",()=>{
+    if(state.index===19)finish();
+    else{state.index++;$("answer").disabled=false;renderQuestion()}
+  });
+  $("pause").addEventListener("click",()=>{
+    if(state.locked)return;
+    state.paused=!state.paused;
+    $("pause-label").hidden=state.paused;$("resume-label").hidden=!state.paused;
+    $("check").disabled=state.paused;$("answer").disabled=state.paused;
+    if(state.paused)stopTimer();else startClock();
+    renderBits();
+  });
+  $("end").addEventListener("click",()=>finish(true));
+  $("sound").addEventListener("click",()=>{
+    state.sound=!state.sound;$("sound-on").hidden=!state.sound;$("sound-off").hidden=state.sound;
+    $("sound").setAttribute("aria-pressed",String(state.sound));
+  });
+  $("replay").addEventListener("click",()=>{stopTimer();show("start");$("name").focus()});
+  document.addEventListener("keydown",e=>{
+    if($("game").hidden||state.paused||state.locked||e.altKey||e.ctrlKey||e.metaKey)return;
+    const binary=state.questions[state.index].to==="binary";
+    if(binary&&e.target.tagName!=="BUTTON"&&/^[1-8]$/.test(e.key)){e.preventDefault();toggleBit(Number(e.key)-1)}
+    if(e.key==="Enter"&&(e.target===$("answer")||e.target.tagName!=="BUTTON")){e.preventDefault();resolve()}
+  });
+})();
+</script>
  </body>
 </html>
